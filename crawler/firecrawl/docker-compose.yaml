@@ -27,6 +27,11 @@ x-common-env: &common-env
   EXTRACT_WORKER_PORT: ${EXTRACT_WORKER_PORT}
   BLOCK_MEDIA: ${BLOCK_MEDIA}
   WORKER_PORT: ${WORKER_PORT}
+  #
+  USE_DB_AUTHENTICATION: false
+  TEST_API_KEY: my-local-key
+  DISABLE_SUPABASE: true
+
 services:
   playwright-service:
     image: ghcr.io/firecrawl/playwright-service:latest

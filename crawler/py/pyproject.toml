@@ -7,8 +7,8 @@ requires-python = ">=3.12"
 dependencies = []
 
 [project.optional-dependencies]
-beautifulsoup = [
-    "beautifulsoup4","requests"
+firecrawl = [
+    "firecrawl"
 ]
 
 [tool.hatch.build.targets.sdist]
