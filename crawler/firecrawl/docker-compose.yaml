@@ -2,6 +2,9 @@ name: firecrawl
 
 x-jwt-secret: &jwt-secret "your-super-secret-jwt-token-with-at-least-32-characters-long"
 
+x-anno-key: &anon-key "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTc2NDU1Nzg1NX0.lbiFsECH7sXJbHJyJH4JICNMrZx9cmzbtawRjlxvQOw"
+x-service-role-key: &service-role-key "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIiwiaWF0IjoxNzY0NTU3ODU1fQ.2TqM1HVVZasQ3CGVFbYCAAtcEJ3H1C_MsiLUr1b2hQA"
+
 # x-common-env: &common-env
 #   REDIS_URL: ${REDIS_URL:-redis://redis:6379}
 #   REDIS_RATE_LIMIT_URL: ${REDIS_URL:-redis://redis:6379}
@@ -48,8 +51,19 @@ services:
       WORKER_PORT: 3005
       ENV: local
       NUQ_DATABASE_URL: postgres://postgres:postgres@nuq-postgres:5432/postgres
+      #
       USE_DB_AUTHENTICATION: true
       SUPABASE_URL: http://supabase-rest:3000
+      
+      SUPABASE_SERVICE_TOKEN: *service-role-key
+      SUPABASE_REPLICA_URL: http://supabase-rest:3000
+      INDEX_SUPABASE_URL: http://supabase-rest:3000
+      INDEX_SUPABASE_SERVICE_TOKEN: *service-role-key
+      #
+      REDIS_URL: redis://redis:6379
+      REDIS_RATE_LIMIT_URL: redis://redis:6379
+      # 
+      
     depends_on:
       - redis
       - playwright-service
