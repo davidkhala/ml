@@ -17,7 +17,12 @@ class WatchTestCase(unittest.TestCase):
     def test_count(self):
         print(self.watch.count)
     def test_batch(self):
-        self.watch.create_batch()
+        urls= [
+            'https://thei.edu.hk',
+            'https://thei.edu.hk/departments/department-of-construction-environment-and-engineering/bachelor-of-engineering-honours-digital-manufacturing/'
+        ]
+        r = self.watch.create_batch(*urls)
+        print(r)
 
 if __name__ == '__main__':
     unittest.main()

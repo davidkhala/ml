@@ -21,9 +21,8 @@ class WatchAPI(API):
             **kwargs
         })
         return r['uuid']
-    def create_batch(self):
-        r = self.request(self.base_url, 'POST', json={})
-        # TODO
+    def create_batch(self, *urls):
+        return self.request(f"{self.root_url}/import", 'POST', data='\n'.join(urls))
     def history(self, id:str)->dict[datetime, str]:
         r = self.request(f"{self.base_url}/{id}/history", 'GET')
         r_t = {}
