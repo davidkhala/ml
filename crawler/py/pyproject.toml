@@ -10,6 +10,9 @@ dependencies = []
 firecrawl = [
     "firecrawl"
 ]
+changedetection = [
+    "davidkhala-utils[http_request]"
+]
 
 [tool.hatch.build.targets.sdist]
 include = ["davidkhala"]
