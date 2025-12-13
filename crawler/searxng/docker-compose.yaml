@@ -1,0 +1,11 @@
+services:
+  searxng:
+    image: searxng/searxng:latest
+    ports:
+      - "9000:8080"
+    volumes:
+      - ./config:/etc/searxng
+      - cache:/var/cache/searxng/
+
+volumes:
+  cache:
