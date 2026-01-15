@@ -1,4 +1,6 @@
+import base64
 from abc import ABC, abstractmethod
+from pathlib import Path
 
 
 class Client(ABC):

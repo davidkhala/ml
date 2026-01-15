@@ -1,10 +1,10 @@
 [project]
 name = "davidkhala.ml.ocr"
-version = "0.0.0"
+version = "0.0.2"
 description = ""
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["pydantic"]
 
 [tool.hatch.build.targets.sdist]
 include = ["davidkhala"]
