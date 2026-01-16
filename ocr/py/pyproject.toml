@@ -8,7 +8,7 @@ dependencies = ["pydantic", "davidkhala-utils"]
 
 [project.optional-dependencies]
 paddle = ["paddleocr", "paddlepaddle==3.2.*"]
-paddle-ocr = ["paddlenlp"]
+paddle-ocr = ["paddlenlp; python_version < '3.12'", "pip"]
 [tool.hatch.build.targets.sdist]
 include = ["davidkhala"]
 
