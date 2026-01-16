@@ -1,8 +1,5 @@
-import os
-import platform
 import unittest
 from pathlib import Path
-from unittest import skipIf
 
 from davidkhala.ml.ocr.paddle import Client
 
@@ -11,11 +8,14 @@ class SDKTestCase(unittest.TestCase):
     def setUp(self):
         self.client = Client()
 
-    @skipIf(platform.system() == 'Windows',
-            'NotImplementedError: (Unimplemented) ConvertPirAttribute2RuntimeAttribute not support [pir::ArrayAttribute<pir::DoubleAttribute>]  (at ..\paddle\fluid\framework\new_executor\instruction\onednn\onednn_instruction.cc:118')
-    def test_predict(self):
+
+    def test_clean(self):
+        self.client.clean()
+
+    def test_schema(self):
         file = Path(__file__).parent / "fixtures" / "transcript.png"
-        self.client.process(file)
+        self.client.init('focus')
+        self.client.process(file, schema=True)
 
 
 if __name__ == '__main__':

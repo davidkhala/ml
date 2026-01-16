@@ -4,10 +4,10 @@ version = "0.0.2"
 description = ""
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["pydantic"]
+dependencies = ["pydantic", "davidkhala-utils"]
 
 [project.optional-dependencies]
-paddle = ["paddleocr[all]", "paddlepaddle"]
+paddle = ["paddleocr[all]", "paddlepaddle==3.2.*"]
 
 [tool.hatch.build.targets.sdist]
 include = ["davidkhala"]
