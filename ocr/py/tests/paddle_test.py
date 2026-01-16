@@ -15,7 +15,7 @@ class SDKTestCase(unittest.TestCase):
     def test_schema(self):
         file = Path(__file__).parent / "fixtures" / "transcript.png"
         self.client.init('focus')
-        self.client.process(file, schema=True)
+        self.client.process(file)
 
 
 if __name__ == '__main__':
