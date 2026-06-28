@@ -1,0 +1,36 @@
+[project]
+name = "davidkhala.ml.nlp"
+version = "0.0.4"
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["pydantic", "davidkhala-utils"]
+
+[project.optional-dependencies]
+presidio = [
+    "presidio-anonymizer",
+    "click" # for spaCy engine
+]
+
+
+[tool.hatch.build.targets.sdist]
+
+include = ["davidkhala"]
+
+[tool.hatch.build.targets.wheel]
+include = ["davidkhala"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["pytest"]
+presidio-image = ["presidio_image_redactor"]
+presidio-text = ["presidio-analyzer"]
+presidio-transformers = ["presidio_analyzer[transformers]"]
+presidio-stanza = ["presidio_analyzer[stanza]"]
+
+
+[tool.uv]
+prerelease = "allow"
