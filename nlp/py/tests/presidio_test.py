@@ -16,9 +16,11 @@ class TextTest(unittest.TestCase):
         marker = Anonymizer()
         print(marker.redact(self.text, analyzer.detect(self.text)).to_json())
 
+
 class ImageTest(unittest.TestCase):
     def test_mask(self):
-        path = Path(__file__).parent / 'transfer.jpeg'
+        _in = Path(__file__).parent / 'fixtures' / 'transfer.jpeg'
+        _out = Path(__file__).parent / 'artifacts' / 'transfer-redacted.jpeg'
         from davidkhala.ml.nlp.presidio.image import Client
         client = Client()
-        print(client.redact(path))
+        client.redact(_in, _out)
