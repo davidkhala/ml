@@ -8,7 +8,9 @@ dependencies = ["pydantic", "davidkhala-utils"]
 
 [project.optional-dependencies]
 paddle = ["paddleocr", "paddlepaddle==3.2.*"]
-paddle-ocr = ["paddlenlp==3.0.0b4; python_version < '3.12'","pip","setuptools" ,"aistudio-sdk==0.2.6"]
+paddle-ocr = ["paddlenlp==3.0.0b4; python_version < '3.12'", "pip", "setuptools", "aistudio-sdk==0.2.6"]
+docling = ["docling"]
+
 [tool.hatch.build.targets.sdist]
 include = ["davidkhala"]
 
@@ -22,6 +24,13 @@ build-backend = "hatchling.build"
 [dependency-groups]
 dev = [
     "pytest"
+]
+docling-vlm = [
+    "docling[vlm]",
+    "hf_xet",
+]
+docling-text = [
+    "rapidocr<3.9" # known issue https://github.com/docling-project/docling/issues/3694
 ]
 
 
