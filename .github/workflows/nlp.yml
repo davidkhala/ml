@@ -8,8 +8,18 @@ jobs:
       - uses: actions/checkout@main
       - uses: davidkhala/uv-buildpack@main
         with:
-          test-entry-point: pytest
           extras: presidio
           working-directory: nlp/py
-          tests: nlp/py/tests
-          groups: presidio-image, presidio-text
+          groups: presidio-image presidio-text
+      - name: prepare spaCy
+        working-directory: nlp/py
+        run: |
+          uv pip install pip
+          uv run spacy download en_core_web_lg
+      - name: Install Tesseract
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tesseract-ocr libtesseract-dev
+      - name: test
+        run: uv run pytest
+        working-directory: nlp/py/tests
