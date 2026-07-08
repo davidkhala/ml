@@ -1,0 +1,15 @@
+name: nlp
+on:
+  push:
+jobs:
+  presidio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: davidkhala/uv-buildpack@main
+        with:
+          test-entry-point: pytest
+          extras: presidio
+          working-directory: nlp/py
+          tests: nlp/py/tests
+          groups: presidio-image, presidio-text

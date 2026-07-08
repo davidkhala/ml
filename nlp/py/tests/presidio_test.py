@@ -17,10 +17,30 @@ class TextTest(unittest.TestCase):
         print(marker.redact(self.text, analyzer.detect(self.text)).to_json())
 
 
+from davidkhala.ml.nlp.presidio.image import Client
+
+_in = Path(__file__).parent / 'fixtures' / 'transfer.jpeg'
+_out = Path(__file__).parent / 'artifacts' / 'transfer-redacted.jpeg'
+
+
 class ImageTest(unittest.TestCase):
     def test_mask(self):
-        _in = Path(__file__).parent / 'fixtures' / 'transfer.jpeg'
-        _out = Path(__file__).parent / 'artifacts' / 'transfer-redacted.jpeg'
-        from davidkhala.ml.nlp.presidio.image import Client
         client = Client()
         client.redact(_in, _out)
+
+
+from davidkhala.ml.nlp.presidio.testcontainers import Image, Request
+
+
+class TestcontainersTest(unittest.TestCase):
+    def setUp(self):
+        self.container = Image()
+        self.container.start()
+        base_url = f"http://localhost:{self.container.exposed_port}"
+        self.request = Request(base_url)
+
+    def tearDown(self):
+        self.container.stop()
+
+    def test_image(self):
+        self.request.image_redact(source=_in, target=_out)
