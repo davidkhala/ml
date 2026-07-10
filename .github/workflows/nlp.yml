@@ -16,10 +16,7 @@ jobs:
         run: |
           uv pip install pip
           uv run spacy download en_core_web_lg
-      - name: Install Tesseract
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y tesseract-ocr libtesseract-dev
+      - uses: davidkhala/setup-tesseract@main
       - name: test
         run: uv run pytest
         working-directory: nlp/py/tests
